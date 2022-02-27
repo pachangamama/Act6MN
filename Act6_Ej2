@@ -1,0 +1,81 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Actividad6._2
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Bienvenido");
+
+            double[,] variable_matriz = {{3,1,2,9,2,3,4,2}, 
+                                         {4,0,1,3,9,2,1,1}, 
+                                         {1,2,5,8,3,2,4,1}, 
+                                         {8,2,2,0,0,4,2,3}, 
+                                         {5,7,9,9,0,3,3,1},
+                                         {0,1,2,1,4,2,5,4}, 
+                                         {8,1,1,2,3,3,7,5}};
+
+            double[,] final_matriz = variable_matriz;
+
+
+
+            for (int i = 0; i < 7; i = i + 1)
+            {
+                for (int j = 0; j < 8; j = j + 1)
+                {
+                    Console.WriteLine(variable_matriz[i, j] + " ");
+                }
+
+                Console.WriteLine();
+            }
+
+            double producto;
+
+            for (int reng = 0; reng < 7; reng = reng + 1)
+            {
+                double pivote = variable_matriz[reng, reng];
+
+                for (int colu = 0; colu < 8; colu = colu + 1)
+                {
+                    variable_matriz[reng, colu] = variable_matriz[reng, colu] / pivote;
+                }
+
+                for (int rengElim = 0; rengElim < 7; rengElim = rengElim + 1)
+                {
+                    if (rengElim != reng)
+                    {
+                        producto = variable_matriz[rengElim, reng];
+
+                        for(int coluElim = 0; coluElim < 8; coluElim = coluElim + 1)
+                        {
+                            variable_matriz[rengElim, coluElim] = variable_matriz[rengElim, coluElim] - producto * variable_matriz[reng, coluElim];
+                        }
+                    }
+                }
+            }
+
+
+            Console.WriteLine();
+            Console.WriteLine("Matriz final: ");
+            Console.WriteLine();
+
+            for (int i = 0; i < 7; i = i + 1)
+            {
+                for (int j = 0; j < 8; j = j + 1)
+                {
+                    Console.WriteLine(variable_matriz[i, j] + " ");
+                }
+
+                Console.WriteLine();
+            }
+
+            Console.ReadKey();
+        }
+
+    }
+}
